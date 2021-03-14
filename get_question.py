@@ -7,7 +7,7 @@ import wikipedia
 
 def get_page(random):
     result = wikipedia.summary(random, sentences=2)
-    return result
+    return result.split(' — ')[1].lower().capitalize().split("\n")[0]
 
 
 
@@ -24,7 +24,7 @@ def get_question():
     call = random_calling()
     try:
         if all(i.isalpha() for i in call) and ord(call[0]) > 1000:
-            return [call.lower().capitalize(), get_page(call).split(' — ')[1].lower().capitalize()]
+            return [call.lower().capitalize(), get_page(call)]
         else:
             return get_question()
     except:
